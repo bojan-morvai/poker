@@ -1,0 +1,103 @@
+body{
+	background-color: rgb(72, 137, 62);
+	text-align: center;
+}
+
+.karte{
+	max-height: 10rem;
+	max-width: 10rem;
+	border: 2px solid black;
+	background-color: rgb(241, 241, 236);
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.div_karte{
+	padding: 0px;
+
+}
+
+#mesto_za_karte{
+	margin-top: 3rem;
+	justify-content: center;
+}
+
+.dugmad{
+	margin-top: 0.5rem;
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+	padding: 0.4rem;
+}
+
+#dalje, #jos_druge_igre,#gotovo, #druga_igra_button{
+	margin-top: 3rem;
+	width: 20%
+}
+
+.btn-link{
+	color: blue;
+	padding: 0;
+}
+
+#jos_druge_igre{
+	display: none;
+}
+
+#rezultat{
+	margin-top: 1.5rem;
+	font-size: 1.7rem;
+}
+.reci{
+	margin-bottom: 0;
+}
+#dobitak{
+	font-size: 1.5rem;
+}
+
+#nova_igra{
+
+	width: 20%;
+	margin-left: 40%;
+	margin-right: 40%;
+}
+
+#kredit, #cena{
+	float: left;
+	margin-top: 0.5rem;
+	font-size: 1.2rem
+}
+
+#cena{
+	float: right;
+}
+
+#potpis{
+	margin-top: 5rem;
+	margin-left: 1rem;
+	margin-bottom: 0.5rem;
+	float:left;
+}
+
+.druga_igra_dugmad{
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	display: none;
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+	padding: 0.4rem;
+}
+
+#wrapper{
+	background-color: white;
+}
+
+@media screen and (max-width: 800px) {
+	#wraper{
+		max-width: 2rem;
+	}
+}

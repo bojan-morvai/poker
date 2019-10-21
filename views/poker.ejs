@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="description" content="This is a simple browser poker game">
+	<meta name="viewport" content="width=device-width, initial-scale=0.7">
+	<meta name="author" content="Bojan Morvai">
+
+	<title>Poker Game</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/poker.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+</head>
+<body>
+	<h2>Poker Browser Game</h2>
+
+	<span id='uputstva' class='btn btn-link'>Instructions</span>
+	<div class='container'>
+		<div id='kredit'><strong>Credit: <span></span></strong></div>
+		<div id='cena'>Deal Price: <span></span></div>
+		<br>
+		<button id='nova_igra' class='btn btn-large btn-secondary'>New Game</button>
+		<div id='mesto_za_karte' class='row'>
+			<div class='col-lg-2 col-4 div_karte'> 
+				<button type='button' name='0a' class='prvi btn btn-success druga_igra_dugmad' disabled>Card</button>
+				<img id='0' class='karte' src="https://watermarked.cutcaster.com/cutcaster-vector-800994090-playing-card-back-side-62x90-mm.jpg">
+				<button type="button" name='0' class="btn btn-primary dugmad" disabled>Stay</button>
+				<button type='button' name='0a' class='prvi btn btn-success druga_igra_dugmad' disabled>Card</button>
+			</div>
+			<div class='col-lg-2 col-4 div_karte'>
+				<button type='button' name='druga_igra' id='vise' class='btn btn-info vise druga_igra_dugmad'>Higher</button>
+				<img id='1' class='karte' src="https://watermarked.cutcaster.com/cutcaster-vector-800994090-playing-card-back-side-62x90-mm.jpg">
+				<button type="button" name='1' class="btn btn-primary dugmad" disabled>Stay</button>
+				<button type='button' name='druga_igra' id='manje' class='btn btn-info manje druga_igra_dugmad'>Lower</button>
+			</div>
+			<div class='col-lg-2 col-4 div_karte'> 
+				<img id='2' class='karte' src="https://watermarked.cutcaster.com/cutcaster-vector-800994090-playing-card-back-side-62x90-mm.jpg">
+				<button type="button" name='2' class="btn btn-primary dugmad" disabled>Stay</button>
+			</div>
+			<div class='col-lg-2 col-4 div_karte'> 
+				<img id='3' class='karte' src="https://watermarked.cutcaster.com/cutcaster-vector-800994090-playing-card-back-side-62x90-mm.jpg">
+				<button type="button" name='3' class="btn btn-primary dugmad" disabled>Stay</button>
+			</div>
+			<div class='col-lg-2 col-4 div_karte'> 
+				<img id='4' class='karte' src="https://watermarked.cutcaster.com/cutcaster-vector-800994090-playing-card-back-side-62x90-mm.jpg">
+				<button type="button" name='4' class="btn btn-primary dugmad" disabled>Stay</button>
+			</div>
+		</div>
+		<button id='jos_druge_igre' class='btn btn-large btn-info'>Game On!</button>
+		<button id='dalje' class='btn btn-large btn-danger' disabled>Game On!</button>
+		
+		<button id='gotovo' name='druga_igra_button' class='btn btn-small btn-info' disabled>End</button>
+		<button id='druga_igra_button' name='druga_igra_button' class='btn btn-small btn-info' disabled>Second Game</button>
+		<div id='rezultat'><p class='reci'></p></div>
+		<div id='dobitak'><p class='reci'></p></div>
+
+	</div>
+
+	<!-- <div id='potpis'>Bojan</div> -->
+	<div id='wrapper'>
+		<p>Welcome to poker game browser application!</p>
+		<p>IMPORTANT NOTICE: Refreshing the page means losing all progress, and returns you to beggining!</p>
+		<p>To start a new game, click on button "New Game" just below instructions.</p>
+		<p>Number in upper left corner indicate how many credits you have left (starting at 1000), and number in upper right corner indicate how many credits each new game costs.</p>
+		<p>You will be dealt cards, so you can choose to left them as they were, or to mark them for change using click on button "stay", click on card, or by using keyboard inputs numbers 1-5.</p>
+		<p>When you choose which cards to change(deal again, as indicated by button under card(stay, or change), click on button "Game On!", or press "Enter" on keyboard to change selected cards.</p>
+		<p>You will receive text message on bottom of the page if you have something, and how much credits you won.</p>
+		<p>You can click on button "End", and credits you won is going to add on total credit, and board will reset for another game.</p>
+		<p>Or, if you won something, you can click on button "Second Game" that will take you to second game where you can multiply your winning, but you can also lose all winnings.</p>
+		<p>Goal of second game is to guess is next card going to be higher of lower than given one.</p>
+		<p>If you guess correctly(pressing the appropriate buttons below or above the card) your winnings will increase by adding to sum a base win from first game.</p>
+		<p>If you want to continue, click on button "Game On!", and guessed card will come to the place of first card.</p>
+		<p>Anytime, except on first try, you can click on button "End", and game will stop, and you will take your winnings and add them to available credit. First game(Poker) will load again.</p>
+		<p>After a while playing, difficulty will increase (Deal Price will increase), but so will base winning credit increase.</p>
+		<p>When you are left without credit, when you next time click on button "New Game", there will be a message that you spent all credit, and how many rounds you played.</p>
+	</div>
+
+
+<script type="text/javascript" src="/scripts/poker.js"></script>
+<script type="text/javascript" src="/scripts/igra.js"></script>
+<script type="text/javascript" src="/scripts/provera_prva_igra.js"></script>
+<script type="text/javascript" src="/scripts/druga_igra.js"></script>
+</body>
+</html>
