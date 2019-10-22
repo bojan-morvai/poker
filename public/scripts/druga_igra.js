@@ -46,7 +46,7 @@ function vise_manje(rec){
 	dugme('#gotovo','disabled',false);
 	dugme('#jos_druge_igre','disabled',false);
 	$('#1').attr('src',karta2.slika);
-	var izraz;
+	let izraz;
 	rec==='higher' ? izraz=karta2.vrednost>karta1.vrednost : izraz=karta2.vrednost<karta1.vrednost;
 	if(izraz){
 		brojac_druga++;
@@ -67,9 +67,10 @@ $('#vise').on('click',function(){
 	vise_manje('higher');
 });
 
-$('#manje').on('lower',function(){
+$('#manje').on('click',function(){
+	console.log('asddad')
 	/* Dugme za manje */
-	vise_manje('manje');
+	vise_manje('lower');
 });
 
 $('#jos_druge_igre').on('click',function(){
