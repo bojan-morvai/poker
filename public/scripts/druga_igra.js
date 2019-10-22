@@ -68,7 +68,6 @@ $('#vise').on('click',function(){
 });
 
 $('#manje').on('click',function(){
-	console.log('asddad')
 	/* Dugme za manje */
 	vise_manje('lower');
 });
