@@ -249,5 +249,5 @@ function reset_dugmadi(){
 	/* Povratak dugmadi za karte u prvobitno stanje */
 	$('.dugmad').addClass('btn-primary');
 	$('.dugmad').removeClass("btn-warning");
-	$('.dugmad').text('Ostaje');
+	$('.dugmad').text('Stay');
 }
