@@ -48,7 +48,7 @@ function prikaz_dobitka(dobitak){
 function game_over(){
 /* Kada nema vise kredita, dugmad se iskljucuju, a ispisuje se koliko je igrac partija odigrao */
 	prikaz_prve_igre();
-	$('#dobitak p').text("You don't have any more credits, game is over! You played"+brojac_partija+" times!");
+	$('#dobitak p').text("You don't have any more credits, game is over! You played "+brojac_partija+" times!");
 	dugme();
  	dugme('.ui-button','disabled',false);
 
@@ -153,9 +153,8 @@ $('.dugmad').on('click',function(){
 $('img').on('click',function(){
 /* Da moze da se kada se klikne na sliku aktivira dugme za nju */
 	let sta=this.id; // Id od slike koji je broj a to je ujedno i name od buttona
-	t=$('button[name=0]').attr('disabled'); // Provera da li su buttoni disabled
-	if(!t){
-		//pritisnuto_dugme(document.querySelector('button[name="'+sta+'"]'));
+	let check_buttons=$('button[name=0]').attr('disabled'); // Provera da li su buttoni disabled
+	if(!check_buttons){
 		pritisnuto_dugme($('button[name='+sta+']'));
 	}
 });
