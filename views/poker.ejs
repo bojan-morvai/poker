@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<meta name="description" content="This is a simple browser poker game">
-	<meta name="viewport" content="width=device-width, initial-scale=0.7">
-	<meta name="author" content="Bojan Morvai">
+<% include ./partials/header %>
 
-	<title>Poker Game</title>
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/poker.css">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
-</head>
-<body>
-	<h2>Poker Browser Game</h2>
+	<!-- <h2>Poker Browser Game</h2> -->
 
 	<span id='uputstva' class='btn btn-link'>Instructions</span>
 	<div class='container'>
@@ -84,5 +68,5 @@
 <script type="text/javascript" src="/scripts/igra.js"></script>
 <script type="text/javascript" src="/scripts/provera_prva_igra.js"></script>
 <script type="text/javascript" src="/scripts/druga_igra.js"></script>
-</body>
-</html>
+
+<% include ./partials/footer %>
