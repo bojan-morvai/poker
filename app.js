@@ -38,7 +38,6 @@ app.use(methodOverride("_method"));
 
 app.use(function(req, res, next){
   currentUser = req.user;
-	// console.log("asdasd: "+ currentUser)
   next();
 });
 
@@ -101,8 +100,8 @@ app.put("/update/:id", function(req, res){
     });
 });
 
-const hostname = process.env.IP || '127.0.0.1';
-const port = process.env.PORT || 3000;
+const hostname = process.env.IP;// || '127.0.0.1';
+const port = process.env.PORT;// || 3000;
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
