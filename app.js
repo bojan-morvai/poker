@@ -14,6 +14,7 @@ mongoose.connect('mongodb+srv://Bojan:klisaklisa@cluster0-rfxxc.mongodb.net/poke
 }).catch(err => {
 	console.log('ERROR:', err.message);
 });
+mongoose.set('useFindAndModify', false);
 
 // Password configuration
 const passport = require("passport");
@@ -37,7 +38,7 @@ app.use(methodOverride("_method"));
 
 app.use(function(req, res, next){
   currentUser = req.user;
-	console.log("asdasd: "+ currentUser)
+	// console.log("asdasd: "+ currentUser)
   next();
 });
 
@@ -46,9 +47,58 @@ app.get('/',(req,res) =>{
   if(currentUser){
 		var users=currentUser;
 	} else {
-		var users={username:'anonimus', kredit:1000, partije:0};
+		var users={username:undefined, credit:1000, count_games:5};
 	}
 	res.render('poker',{users:users});
+});
+
+app.post('/save',(req,res)=>{
+  let newUser = new User({username:req.body.username, credit:req.body.credit, count_games:req.body.count_games});
+  User.register(newUser, req.body.password, (err,user)=>{
+    if(err){
+      return res.render('poker')
+    }
+    passport.authenticate('local')(req,res, ()=>{
+      res.redirect('/')
+    });
+  });
+});
+
+app.get("/login", function(req, res){
+  res.render("login"); 
+});
+
+app.post("/login", passport.authenticate("local", 
+  {
+    successRedirect: "/load",
+    failureRedirect: "/"
+  }), function(req, res){
+});
+
+app.get("/logout", (req, res)=>{
+  req.logout();
+  res.redirect("/");
+});
+
+app.get('/load', (req,res) =>{
+	User.findById(currentUser, function(err,user){
+		if(err){
+			res.send("Something went wrong! "+err)
+		} else {
+			res.redirect('/')
+		}
+	})
+})
+
+// UPDATE ROUTE
+app.put("/update/:id", function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body, function(err, updatedUser){
+    	if(err){
+    		res.send("ERROR");
+		}  else {
+            res.redirect("/load");
+        }
+    });
 });
 
 const hostname = process.env.IP || '127.0.0.1';

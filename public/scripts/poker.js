@@ -25,8 +25,8 @@ class Deck{
 		}
 		this.cards=spil;
 		for(let i=0;i<52;i++){
-			// this.cards[i].slika=slike_fajl[i];	// Iz fajla na kompu
-			this.cards[i].slika=slike[i];			// Sa interneta			
+			// this.cards[i].slika=slike_fajl[i];	// From local file
+			this.cards[i].slika=slike[i];			// From internet		
 		}
 	}
 
@@ -40,8 +40,8 @@ class Deck{
 		}
 		this.cards=spil;
 		for(let i=0;i<52;i++){
-			// this.cards[i].slika=slike_fajl[i];	// Iz fajla na kompu
-			this.cards[i].slika=slike[i];			// Sa interneta
+			// this.cards[i].slika=slike_fajl[i];	// From local file
+			this.cards[i].slika=slike[i];			// From internet
 		}
 		return this.cards;
 	}
@@ -67,7 +67,6 @@ class Deck{
 	}
 
 	deal_card(){
-		// return this._deal()[0].reprezent()
 		return this._deal()[0];
 	}
 
@@ -154,12 +153,6 @@ class Deck{
 
 // }
 
-/////////////////////////////////////////////////////////////////
-// {'A': [srce_slika, kocka_slika, tref_slika, spades_slika]
-// '2': [srce_slika, kocka_slika, tref_slika, spades_slika]
-// }
-
-// if key === 'A' and Card.znak===heart slika=A[0]
 ////////////////////////////////////////////////////////////////////
 const slike =['https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cards-A-Heart.svg/800px-Cards-A-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Cards-2-Heart.svg/800px-Cards-2-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Cards-3-Heart.svg/800px-Cards-3-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Cards-4-Heart.svg/800px-Cards-4-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Cards-5-Heart.svg/800px-Cards-5-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Cards-6-Heart.svg/800px-Cards-6-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Cards-7-Heart.svg/800px-Cards-7-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Cards-8-Heart.svg/800px-Cards-8-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Cards-9-Heart.svg/800px-Cards-9-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Cards-10-Heart.svg/800px-Cards-10-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Cards-J-Heart.svg/800px-Cards-J-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Cards-Q-Heart.svg/800px-Cards-Q-Heart.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Cards-K-Heart.svg/800px-Cards-K-Heart.svg.png',
 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Cards-A-Diamond.svg/800px-Cards-A-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Cards-2-Diamond.svg/800px-Cards-2-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Cards-3-Diamond.svg/800px-Cards-3-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Cards-4-Diamond.svg/800px-Cards-4-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cards-5-Diamond.svg/800px-Cards-5-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Cards-6-Diamond.svg/800px-Cards-6-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Cards-7-Diamond.svg/800px-Cards-7-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Cards-8-Diamond.svg/800px-Cards-8-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cards-9-Diamond.svg/800px-Cards-9-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Cards-10-Diamond.svg/800px-Cards-10-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Cards-J-Diamond.svg/800px-Cards-J-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Cards-Q-Diamond.svg/800px-Cards-Q-Diamond.svg.png','https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Cards-K-Diamond.svg/800px-Cards-K-Diamond.svg.png',

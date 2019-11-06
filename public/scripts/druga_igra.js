@@ -1,7 +1,7 @@
 var spil2,karta1,karta2,brojac_druga=1;
 
+/* Shows second game play table */
 function prikaz_druge_igre(){
-	/* Kako treba da izgleda sto za drugu igru */
 	$('img[id=2]').hide();
 	$('img[id=3]').hide();
 	$('img[id=4]').hide();
@@ -23,15 +23,15 @@ function prikaz_druge_igre(){
 	$('img[id=1]').attr("src",'https://watermarked.cutcaster.com/cutcaster-vector-800994090-playing-card-back-side-62x90-mm.jpg');
 }
 
+/* Changing cards images to default */
 function prikaz_karata_posle_druge_igre(){
-	/* Vracanje na pocetak slika od karata */
 	for(let i=0;i<5;i++){
 		$('#'+i).attr('src','https://watermarked.cutcaster.com/cutcaster-vector-800994090-playing-card-back-side-62x90-mm.jpg');
 	}
 }
 
+/* Dealing cards for second game */
 function druga_igra(){
-	/* Pocetak druge igre */
 	dugme('#gotovo');
 	dugme('#jos_druge_igre');
 	spil2=new Deck();
@@ -41,8 +41,8 @@ function druga_igra(){
 	karta2=spil2.deal_card();
 }
 
+/* Checking if dealt card is higher or lower than previous, and checking if player guessed correctly */
 function vise_manje(rec){
-	/* Provera da li je nova karta veca ili manja i da li je igrac u pravu */
 	dugme('#gotovo','disabled',false);
 	dugme('#jos_druge_igre','disabled',false);
 	$('#1').attr('src',karta2.slika);
@@ -61,19 +61,18 @@ function vise_manje(rec){
 	dugme('#vise');
 	dugme('#manje');
 }
-
+/* Higher button */
 $('#vise').on('click',function(){
-	/* Dugme za vise */
 	vise_manje('higher');
 });
 
+/* Lower button */
 $('#manje').on('click',function(){
-	/* Dugme za manje */
 	vise_manje('lower');
 });
 
+/* Button for continuing second game */
 $('#jos_druge_igre').on('click',function(){
-	/* Dugme za nastavak druge igre, ukoliko je prethodno bio pogodak */
 	dugme('#vise','disabled',false);
 	dugme('#manje','disabled',false);
 	dugme('#jos_druge_igre');

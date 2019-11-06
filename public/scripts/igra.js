@@ -1,13 +1,14 @@
-var dobitak=0,
-	cena=100,
-	k=1,
-	k2=1;
+var dobitak=0, 	// Winnings of current game
+	cena=100, 	// Price of current game
+	k=1,		// For adjusting difficulty, factor for winnings
+	k2=1;		// For adjusting difficulty, factor for winnings
 
-var money=1000;
-var brojac_partija=0;
-var spil= new Deck();
-var ruka;
+var money=Number(document.getElementById("credit-user").value);			// Starting credit
+var brojac_partija=Number(document.getElementById("count-user").value);	// Game counter
+var spil= new Deck();	// New deck of 52 cards
+var ruka;				// Player's hand
 
+// Instructions
 $(document).ready(function () {
     $(function() {
         $("#wrapper").dialog({
@@ -28,39 +29,61 @@ $(document).ready(function () {
     });
 });
 
+// Save game dialog box
+$(document).ready(function () {
+    $(function() {
+        $("#wrapper-save").dialog({
+            autoOpen: false,
+            maxWidth:400,
+            maxHeight: 400,
+            width: 400,
+            height: 300,
+            modal: true,
+            title: 'Save Game',
+            close: function() {
+            }
+        });
+    });
+
+    $("#save-pop").click(function() {
+        $("#wrapper-save").dialog("open");
+    });
+});
+/* Custom function for disabling and enabling buttons */
 function dugme(identifikacija='button',atribut='disabled',vrednost='true'){
-/* Custom funkcija da se gase i pale dugmad! */
 	return $(identifikacija).attr(atribut,vrednost);
 }
 
+/* Showing credit in upper left corner */
 function prikaz_kredita(money){
-/* Funkcija za prikaz kredita u gornjem levom uglu */
 	$('#kredit span').text(money);
 	$('#cena span').text(cena);
+	$('#credit-user').val(money)
+	$('#credit-user-put').val(money)
 }
 
+/* Showing of current winnings */
 function prikaz_dobitka(dobitak){
-/* Brojcani prikaz trenutnog dobitka */
 	$('#dobitak p').text('');
 	$('#dobitak p').text('You won: '+dobitak+ " credits");
 }
 
+/* When game is over, buttons are disabled, showing message how many games are played */
 function game_over(){
-/* Kada nema vise kredita, dugmad se iskljucuju, a ispisuje se koliko je igrac partija odigrao */
 	prikaz_prve_igre();
 	$('#dobitak p').text("You don't have any more credits, game is over! You played "+brojac_partija+" times!");
 	dugme();
  	dugme('.ui-button','disabled',false);
-
 }
 
+/* Button for new game */
 $('#nova_igra').on('click',function(){
-	/* Dugme za novu igru */
 	if(money<=0){
 		game_over();
 	}else{
 		brojac_partija++;
-		//console.log(brojac_partija)
+		$('#count-user').val(brojac_partija);
+		$('#count-user-put').val(brojac_partija);
 		prilagodjavanje_igre(brojac_partija);
 		nova_igra();
 		dugme('button','disabled',false);
@@ -73,8 +96,8 @@ $('#nova_igra').on('click',function(){
 	}
 });
 
+/* Showing table for first game */
 function prikaz_prve_igre(){
-/* Prikaz stola za prvu igru */
 	$('img').show();
 	$('button').show();
 	dugme('#nova_igra','disabled',false);
@@ -86,8 +109,8 @@ function prikaz_prve_igre(){
 	$('button[name=pitanje]').hide();
 }
 
+/* Difficulty increases - price for new game, but also winnings */
 function prilagodjavanje_igre(brojac){
-/* Kako se sve duze igra, igra postaje teza - cena se povecava, ali i dobici */
 	if(brojac>=130){
 		k2=6; k=7; cena=3800;
 	}else if(brojac>=100){
@@ -107,8 +130,8 @@ function prilagodjavanje_igre(brojac){
 	}
 }
 
+/* Game beggining and paying for dealing hand */
 function nova_igra(){
-/* Pocetak igre i placanje deljenja */
 	spil.restart();
 	spil.shuffle();
 	prikaz_kredita(money);
@@ -117,8 +140,8 @@ function nova_igra(){
 	prikaz_karata(ruka);
 }
 
+/* Showing cards pictures */
 function prikaz_karata(ruka){
-/* Prikazuje slike karata */
 	$('#0').attr('src',ruka[0].slika);
 	$('#1').attr('src',ruka[1].slika);
 	$('#2').attr('src',ruka[2].slika);
@@ -126,13 +149,13 @@ function prikaz_karata(ruka){
 	$('#4').attr('src',ruka[4].slika);
 }
 
+/* Show result as text message */
 function prikaz_rezultata(text){
-/* Tekstualni prikaz rezultata */
 	$("#rezultat p").append(text);
 }
 
+/* Changes card buttons when pressed */
 function pritisnuto_dugme(dugme){
-/*  Menja se izgled dugmadi za karte kada se ne njih pritisne */
 	$(dugme).text(function(i,v){
 		return v === 'Stay' ? "Change" : "Stay";
 	});
@@ -145,13 +168,13 @@ function pritisnuto_dugme(dugme){
 	}
 }
 
+/* Pressing card buttons on mouse click */ 
 $('.dugmad').on('click',function(){
-/* Pritiskanje dugmadi za menjanje karata putem misa */ 
 	pritisnuto_dugme(this);
 });
 
+/* Pressing card buttons for mause click on picture */
 $('img').on('click',function(){
-/* Da moze da se kada se klikne na sliku aktivira dugme za nju */
 	let sta=this.id; // Id od slike koji je broj a to je ujedno i name od buttona
 	let check_buttons=$('button[name=0]').attr('disabled'); // Provera da li su buttoni disabled
 	if(!check_buttons){
@@ -159,21 +182,35 @@ $('img').on('click',function(){
 	}
 });
 
-var provera_dugmadi=false;
+/* Pressing card buttons over keyboard numbers 1-5*/
+var provera_dugmadi=false; // For disabling keyboard pressing when inactive
 $("body").keypress(function(event){
-/* Unos karte koja se menja preko tastature */
 	if(provera_dugmadi){
 		for(let i=0;i<5;i++){
 			if(event.which===49+i){
-				var dugme=$('button[name='+i+']');
+				let dugme=$('button[name='+i+']');
 				pritisnuto_dugme(dugme);
 			}
 		}
 	}
 });
 
+/* Red button 'Game on', mouse click */
+$('#dalje').on('click',function(){
+	dugme_dalje();
+});
+
+/* Red button 'Game on', keyboard press 'enter' */
+$('body').keypress(function(event){
+	if(provera_dugmadi){
+		if(event.which===13){
+			dugme_dalje();
+		}
+	}
+});	
+
+/* 'Game on!' button function for changing selected cards */
 function dugme_dalje(){
-/*	Dugme za menjanje karata - crveno na kome pise 'dalje' */
 	var mesto_zamena=[];
 	for(let i=0;i<5;i++){
 		if($('button[name='+i+']').hasClass("btn-warning")){
@@ -193,25 +230,9 @@ function dugme_dalje(){
 	}
 	provera_dugmadi=false;
 }
-
-$('#dalje').on('click',function(){
-/* Klik na dugme 'dalje' */
-	dugme_dalje();
-});
-
-$('body').keypress(function(event){
-/* Kada se pritisne 'enter' na tastaturi da se ide kao da je kliknuto da dugme 'dalje' */
-	if(provera_dugmadi){
-		if(event.which===13){
-			dugme_dalje();
-		}
-	}
-});		
-
-
-
+	
+/* 'End' button, show winnings */
 $('#gotovo').on('click',function(){
-	/* Dugme za kraj igre i eventualni dobitak - info na kome pise 'kraj' */
 	dobitak*=brojac_druga;
 	prikaz_dobitka(dobitak);
 	money+=dobitak;
@@ -226,26 +247,26 @@ $('#gotovo').on('click',function(){
 	$('#dobitak p').text('');
 });
 
+/* 'Second game' button, if player want to play second game */
 $('#druga_igra_button').on('click',function(){
-	/* Ukoliko igrac hoce da igra drugu igru dugme */
 	prikaz_druge_igre();
 	druga_igra();
 });
 
+/* Changing selected cards */
 function menjanje_karata(mesto_zamena){
-	/* Zamena karata na datim mestima */
 	for(let i=0;i<5;i++){
 		if(mesto_zamena.includes(i)){
 			ruka[i]=spil.deal_card();
 		}
 	}
-	prikaz_karata(ruka) ;		// Prikaz nesortiranih karata posle menjanja
+	prikaz_karata(ruka) ;		// Showing unsorted cards after switching them
 	reset_dugmadi();
 	return ruka;
 }
 
+/* Changing card buttons to defaults */
 function reset_dugmadi(){
-	/* Povratak dugmadi za karte u prvobitno stanje */
 	$('.dugmad').addClass('btn-primary');
 	$('.dugmad').removeClass("btn-warning");
 	$('.dugmad').text('Stay');

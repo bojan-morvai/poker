@@ -44,6 +44,17 @@
 
 	</div>
 
+	<div id='wrapper-save'>
+		<form action='/save' method="POST">
+			<input id='credit-user' type="number" name='credit' value='<%=users.credit%>' hidden></input>
+			<input id='count-user' type="number" name='count_games' value='<%=users.count_games%>' hidden></input>
+			<input class='dialog-save' type='text' name='username' placeholder='Username'>
+			<input class='dialog-save' type='password' name='password' placeholder='Password'>
+			<br>
+			<input type="submit" value="Save!">
+		</form>
+	</div>
+
 	<!-- <div id='potpis'>Bojan</div> -->
 	<div id='wrapper'>
 		<p>Welcome to poker game browser application!</p>

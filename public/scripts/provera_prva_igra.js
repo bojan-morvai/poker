@@ -1,13 +1,13 @@
+/* Checking for winning combination, returns true if there are winnings, false if there are no winnings */
 function provera(ruka){
-/* Provera ruke i dobitka, vraca true ako ima nesto, false ako nema nista */
-	var brojevi=[],znakovi=[];
+	let brojevi=[],znakovi=[];
 	for (let i in ruka){
 		brojevi.push(ruka[i].vrednost);
 		znakovi.push(ruka[i].znak);
 	}
 	// brojevi=[2,2,1,5,5]							//TEST
 	// znakovi=['hearts','hearts','hearts','spades']	//TEST
-	var ide;
+	let ide;
 	if(provera_royal_flush(brojevi,znakovi)){
 		dobitak=k2*15000;
 		ide="You have Royal Flush";
@@ -40,16 +40,18 @@ function provera(ruka){
 		prikaz_rezultata(ide);
 		if(ruka[4].vrednost>=13){
 			dobitak=50*k;
-			return true; // Ako ima K ili A
+			return true; // If there is K or A
 		}
-		return false; // Ako nema nista
+		return false; // If nothing
 	}
 	prikaz_rezultata(ide);
-	return true; // Ako je bilo sta vece od K ili A bilo
+	return true; // Of anything greater than A or K
 }
-
-function _par(brojevi){ //Vraca niz [1,1,1,1,1] ako nema ni jedan par; [1,2,2,1,1] ako ima JEDAN PAR; [2,2,1,2,2] ako ima DVA PARA; [1,3,3,3,1] ako ima TRILING; [1,4,4,4,4] ako ima POKER
-	var koliko=[];
+/* Returns array [1,1,1,1,1] if there is not single pair; 
+[1,2,2,1,1] if there is ONE pair; [2,2,1,2,2] if there is TWO pairs; 
+[1,3,3,3,1] if there is THREE of a kind; [1,4,4,4,4] if there is FOUR of a kind */
+function _par(brojevi){ 
+	let koliko=[];
 	brojevi.forEach(function(karta){
 		let b=0;
 		for(let i=0;i<brojevi.length;i++){
@@ -59,7 +61,6 @@ function _par(brojevi){ //Vraca niz [1,1,1,1,1] ako nema ni jedan par; [1,2,2,1,
 		}
 		koliko.push(b);
 	});
-	//console.log(koliko)
 	return koliko;
 }
 

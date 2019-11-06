@@ -21,12 +21,18 @@
   				<a  href='/' class="navbar-brand"><strong>Poker by Bojan</strong></a>
  				<ul class='nav'>
 					<% if(!currentUser){ %>
-						<li><a class='nav-item nav-link' href='/login'><em>Login</em></a></li>
-						<li><a class='nav-item nav-link' href='/save'><em>Save</em></a></li>	
+						<li><a class='nav-item nav-link update-link' href='/login'><em>Login</em></a></li>
+						<li><span id='save-pop' class='nav-item nav-link update-link'><em>Save</em></span></li>	
 					<% } else { %>
 						<span class='navbar-text'>Igrate kao <%= currentUser.username %></span>
-						<li><a class='nav-item nav-link' href='/logout'><em>Logout</em></a></li>
+						<li><a class='nav-item nav-link update-link' href='/logout'><em>Logout</em></a></li>
+						<form action='/update/<%=users._id %>?_method=PUT' method="POST">
+							<input id='credit-user-put' type="number" name='credit' value='<%=users.credit%>' hidden></input>
+							<input id='count-user-put' type="number" name='count_games' value='<%=users.count_games%>' hidden></input>
+							<input class='nav-item nav-link update-link' type="submit" value="Update">
+						</form>
 					<% } %>
+					
 				</ul>	
 			</div>
 		</nav>
