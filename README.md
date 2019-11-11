@@ -11,3 +11,9 @@ Application is made using vanilla JS, Jquery, Node, Express and Bootstrap librar
 
 There is main app.js file, made with node, express and javascript, ejs file in views directory, css file in public/stylesheets, and few
 js files in public/scripts
+
+# Database
+Users can use MongoDB to save, update, or load their progress by entering choosen username and password
+
+# Version
+There is version without DB on branch called 'without_db'
